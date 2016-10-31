@@ -47,6 +47,31 @@ suite('Fake: when client ask 200 grams of whisky', function () {
 
     suite('no whisky in bar', function () {
 
+        test("barman offers client tequila", function() {
+
+            let clientAskVolume = 200;
+            let barmanFake = (function() {
+
+                let whiskyVolume = 199;
+
+                let answer = function(volume) {
+                    if (whiskyVolume < volume) {
+                        return "Maybe tequila?";
+                    } else {
+                        return "One minutes, please.";
+                    }
+                };
+
+                return {
+                    answer: answer
+                }
+
+            })();
+
+            let answer = barmanFake.answer(clientAskVolume);
+            assert.equal(answer, "Maybe tequila?")
+        });
+
     });
 
 
