@@ -24,6 +24,25 @@ suite('Stub: when client ask 200 grams of whisky', function () {
             assert.equal(clientAskVolume, volumeInGlass);
         });
 
+        test('barman refuse client because he is drunken', function() {
+
+            let barmanStub = {
+                pour: function() {
+                    return 0;
+                }
+            };
+
+            let clientStub = {};
+            let drinkName = 'tequila';
+            let clientAskVolume = 100;
+            barmanStub.pour(drinkName, clientAskVolume, clientStub);
+
+            clientAskVolume = 150;
+            let volumeInGlass = barmanStub.pour(drinkName, clientAskVolume, clientStub);
+
+            assert.equal(0, volumeInGlass);
+        });
+
     });
 
     suite('no whisky in bar', function () {
