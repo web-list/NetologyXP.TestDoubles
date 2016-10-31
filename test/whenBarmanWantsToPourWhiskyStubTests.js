@@ -47,6 +47,18 @@ suite('Stub: when client ask 200 grams of whisky', function () {
 
     suite('no whisky in bar', function () {
 
+        test("barman refuse client because not enough", function() {
+
+            let barmanStub = {
+                hasDrink: function() {
+                    return false;
+                }
+            };
+
+            let hasDrink = barmanStub.hasDrink();
+            assert.equal(hasDrink, false);
+        });
+
     });
 
 
